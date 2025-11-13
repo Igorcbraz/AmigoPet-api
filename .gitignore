@@ -1,0 +1,27 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+
+# Sequelize CLI folders (in case of temporary files)
+*.sqlite
+*.sqlite3
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# ESLint cache
+.eslintcache
+
+# VSCode config (opcional, se quiser ignorar configs de IDE)
+.vscode/
