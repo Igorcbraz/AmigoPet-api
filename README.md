@@ -28,8 +28,56 @@ npm install
 ```
 
 3. Configure as variáveis de ambiente:
-   - Crie um arquivo `.env` na raiz do projeto baseado no `.env.example`
-   - Preencha com as informações necessárias (conexão com banco de dados, etc.)
+   - Copie o arquivo de exemplo para `.env`:
+
+```bash
+# Unix/macOS
+cp .env.example .env
+
+# Windows (PowerShell)
+Copy-Item .env.example .env
+```
+
+   - Abra `.env` e preencha as variáveis necessárias:
+     - DB_USERNAME=
+     - DB_PASSWORD=
+     - DB_NAME=
+     - DB_HOST=
+     - JWT_SECRET=
+
+4. Crie e prepare o banco de dados PostgreSQL (exemplo usando psql):
+
+```bash
+# criar o banco (ajuste usuário/host conforme necessário)
+psql -U <DB_USERNAME> -h <DB_HOST> -c "CREATE DATABASE <DB_NAME>;"
+
+# ou usando createdb
+createdb -U <DB_USERNAME> -h <DB_HOST> <DB_NAME>
+```
+
+5. Execute as migrações para criar as tabelas:
+
+```bash
+# cria o banco (se ainda não criado) e aplica migrações
+npx sequelize-cli db:create
+npm run mig
+```
+
+6. Inicie a API em modo de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+7. Verifique o health da API:
+
+```bash
+curl http://localhost:3000/health
+```
+
+Observações:
+- Não comite o arquivo `.env` com segredos. Use variáveis de ambiente seguras em produção.
+- Se você estiver usando Docker ou outra infraestrutura, ajuste os comandos de criação do banco conforme necessário.
 
 ## Executando o Projeto
 
