@@ -7,16 +7,31 @@ const commonConfig = {
   host: process.env.DB_HOST,
   dialect: 'postgres',
   logging: false,
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    }
-  },
 }
 
 module.exports = {
-  development: commonConfig,
-  test: commonConfig,
-  production: commonConfig
+  development: {
+    ...commonConfig,
+    dialectOptions: {
+      ssl: false
+    }
+  },
+  test: {
+    ...commonConfig,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
+  },
+  production: {
+    ...commonConfig,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
+  }
 }
